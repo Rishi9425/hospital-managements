@@ -1,59 +1,60 @@
-.card {
-    width: 300px;
+
+  .doctor-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .doctor-card {
+    width: 260px;
     background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px auto;
-}
+    transition: transform 0.3s ease;
+  }
 
-.card:hover {
+  .doctor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
+  }
 
-.card-img-top {
+  .doctor-card img {
     width: 100%;
-    height: 180px;
+    height: 220px;
     object-fit: cover;
-}
+  }
 
-.card-body {
-    padding: 20px;
-}
-
-.card-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #2c3e50;
+  .doctor-info {
+    padding: 1rem;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-}
+  }
 
-.card-text {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 20px;
-    
-}
+  .doctor-info h3 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
 
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #3498db;
+  .doctor-info p {
+    margin-bottom: 1rem;
+    color: #777;
+    font-size: 0.95rem;
+  }
+
+  .doctor-info button {
+    background-color: #0077ff;
     color: white;
-    text-decoration: none;
-    border-radius: 6px;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-    text-align: center;
-}
+  }
 
-.btn:hover {
-    background-color: #2980b9;
-}
-.top{
-    display: inline-flex;
-    gap: 10px;
-}
+  .doctor-info button:hover {
+    background-color: #005fcc;
+  }
+

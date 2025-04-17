@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-cards',
@@ -7,6 +7,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './doctor-cards.component.html',
   styleUrl: './doctor-cards.component.css'
 })
-export class DoctorCardsComponent {
 
+
+export class DoctorCardsComponent {
+  constructor(private router: Router) {}
+
+  goToBookings(){
+  this.router.navigate(['/appoitment']);
+}
 }
