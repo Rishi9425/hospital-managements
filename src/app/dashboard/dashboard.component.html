@@ -1,0 +1,37 @@
+<div class="dashboard-container">
+  <div class="person-card">
+    <img src="https://via.placeholder.com/120" alt="User Photo" class="profile-img" />
+    <div class="info">
+      <h2>{{doctor.name}}</h2>
+      <p><strong>{{doctor.phone}}</strong> +91 22222222</p>
+      <p><strong>{{doctor.address}}</strong> 221B Baker Street, London</p>
+    </div>
+    <button class="btn" (click)="editpage()">Edit Info</button>
+  </div>
+</div>
+
+<div class="patient-section">
+  <div class="patient-list">
+    <h1>Patient List</h1>
+
+    <div class="patient-card">
+      <img src="https://via.placeholder.com/100" alt="Patient Photo" class="patient-img" />
+      <div class="patient-info">
+        <h3>Patient 1</h3>
+        <p><strong>Age:</strong> 30</p>
+        <p><strong>Phone:</strong> 9855555555</p>
+      </div>
+      <button class="btn">Take Appointment</button>
+    </div>
+
+    <div class="patient-card">
+      <img src="https://via.placeholder.com/100" alt="Patient Photo" class="patient-img" />
+      <div class="patient-info">
+        <h3>Patient 2</h3>
+        <p><strong>Age:</strong> 28</p>
+        <p><strong>Phone:</strong> 8765555555</p>
+      </div>
+      <button class="btn">Take Appointment</button>
+    </div>
+  </div>
+</div>

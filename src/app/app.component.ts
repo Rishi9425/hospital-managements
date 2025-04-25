@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
-import { SignupComponent } from "./signup/signup.component";
-import { DoctorCardsComponent } from "./doctor-cards/doctor-cards.component";
-import { AppoitmentComponent } from './appoitment/appoitment.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 @Component({
   selector: 'app-root',

@@ -1,79 +1,127 @@
 .navbar {
-    background-color: #2c3e50; /* Dark blue-gray */
+    background-color: #2c3e50;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 2vh 3vw;
     font-family: Arial, sans-serif;
-}
-
-.navbar h2 {
+    flex-wrap: wrap;
+    position: relative;
+  }
+  
+  /* Brand Style */
+  .navbar h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3vh;
+    color: #f1c40f;
     margin: 0;
-    font-size: 24px;
-}
-
-.navbar div {
+  }
+  
+  .navbar h2 a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Search Box */
+  .search {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.navbar input {
-    padding: 8px 12px;
-    border-radius: 5px;
+    gap: 1vw;
+    width: 30vw;
+    max-width: 400px;
+  }
+  
+  .search input {
+    padding: 1vh 1vw;
+    border-radius: 0.5vh;
     border: 1px solid #ccc;
-    font-size: 14px;
+    font-size: 1.5vh;
     outline: none;
-}
-
-.navbar button {
-    padding: 8px 12px;
+    
+  }
+  
+  .search button {
+    padding: 1vh 1vw;
     background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.5vh;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.navbar button:hover {
+    font-size: 1.5vh;
+  }
+  
+  .search button:hover {
     background-color: #2980b9;
-}
-
-.navbar ul {
+  }
+  
+  /* Nav Links */
+  .nav-links ul {
     display: flex;
     align-items: center;
     margin: 0;
     padding: 0;
-    list-style-type: none;
-    gap: 20px;
-}
-
-.navbar ul li a {
+    list-style: none;
+    gap: 2vw;
+  }
+  
+  .nav-links ul li {
+    font-size: 2vh;
+  }
+  
+  .nav-links ul li a {
     text-decoration: none;
     color: white;
     transition: color 0.3s ease;
-}
-
-.navbar ul li a:hover {
+  }
+  
+  .nav-links ul li a:hover {
     color: #f1c40f;
-}
-
-.navbar ul li {
-    font-size: 18px;
-}
-
-.navbar h2 a {
-    text-decoration: none;       /* removes underline */
-    color: inherit;              /* inherits color from parent (like h2) */
-}
-
-
-.navbar h2 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 25px;
-    color: #f1c40f;              /* or change to black for "normal" color */
-    margin: 0;
-}
-
+  }
+  
+  /* Hamburger Icon */
+  .hamburger {
+    display: none;
+    font-size: 4vh;
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .search {
+      width: 100%;
+      margin: 1vh 0;
+    }
+  
+    .hamburger {
+      display: block;
+      position: absolute;
+      top: 2vh;
+      right: 3vw;
+    }
+  
+    .nav-links {
+      display: none;
+      width: 100%;
+      margin-top: 1vh;
+    }
+  
+    .nav-links.show {
+      display: block;
+    }
+  
+    .nav-links ul {
+      flex-direction: column;
+      gap: 2vh;
+      align-items: flex-start;
+      padding-left: 3vw;
+    }
+  }
+  
