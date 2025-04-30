@@ -20,13 +20,19 @@ export class EditPageComponent {
     const nav = this.router.getCurrentNavigation();
     if (nav?.extras.state && nav.extras.state['doctor']) {
       this.doctor = { ...nav.extras.state['doctor'] };
+    } else if (history.state?.doctor) {
+      this.doctor = { ...history.state.doctor };
     }
   }
+  
 
   save() {
     history.state.doctor.name = this.doctor.name;
     history.state.doctor.phone = this.doctor.phone;
     history.state.doctor.address = this.doctor.address;
+    history.state.doctor.photo = this.doctor.photo;
     this.router.navigate(['/dashboard'], { state: { doctor: this.doctor } });
   }
 }
+
+

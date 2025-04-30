@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,10 +11,10 @@ export class DashboardComponent implements OnInit {
     name: 'John Doe',
     phone: '+91 22222222',
     address: '221B Baker Street, London',
-    photo: 'https://via.placeholder.com/120'
+    photo: 'assets\images\male-doctor-smiling-happy-face-600nw-2481032615.webp'
   };
 
-  constructor(private location: Location) {}
+  constructor(private router: Router, private location: Location) {}
 
   ngOnInit(): void {
     const state = this.location.getState() as any;
@@ -24,7 +24,6 @@ export class DashboardComponent implements OnInit {
   }
 
   editpage() {
-    history.pushState(null, '', '/edit-page'); // optional: clear old state
-    window.location.href = '/edit-page';       // or use Router if needed
+    this.router.navigate(['/edit-page'], { state: { doctor: this.doctor } });
   }
 }
