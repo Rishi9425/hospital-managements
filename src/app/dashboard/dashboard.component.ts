@@ -26,4 +26,7 @@ export class DashboardComponent implements OnInit {
   editpage() {
     this.router.navigate(['/edit-page'], { state: { doctor: this.doctor } });
   }
+  call(){
+    this.router.navigate(['/video-chat']);
+  }
 }

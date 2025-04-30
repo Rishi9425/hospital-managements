@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./navbar/navbar.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
+import { VideoChatComponent } from "./video-chat/video-chat.component";
+
 
 @Component({
   selector: 'app-root',

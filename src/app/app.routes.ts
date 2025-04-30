@@ -4,6 +4,7 @@ import { DoctorCardsComponent } from './doctor-cards/doctor-cards.component';
 import { AppoitmentComponent } from './appoitment/appoitment.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
+import { VideoChatComponent } from './video-chat/video-chat.component';
 export const routes: Routes = [
 
     {
@@ -22,5 +23,9 @@ path: 'signup', component: SignupComponent
 
 {
 path: 'edit-page', component: EditPageComponent
+},
+
+{
+    path: 'video-chat', component: VideoChatComponent
 }
 ];
