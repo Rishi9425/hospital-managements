@@ -17,7 +17,9 @@ export const bookAppointment = createAction(
 );
 export const bookAppointmentSuccess = createAction(
   '[Appointment] Book Appointment Success',
-  props<{ appointment: Appointment }>()
+  props<{ appointment: Appointment }>(
+    
+  )
 );
 export const bookAppointmentFailure = createAction(
   '[Appointment] Book Appointment Failure',
