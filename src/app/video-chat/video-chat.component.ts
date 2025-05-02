@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SignalingService } from '../signaling.service';
 
@@ -13,7 +14,7 @@ export class VideoChatComponent implements OnInit {
   private peerConnection!: RTCPeerConnection;
   private localStream!: MediaStream;
 
-  constructor(private signaling: SignalingService) {}
+  constructor(private router: Router , private signaling: SignalingService) {}
 
   async ngOnInit() {
     this.localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -70,5 +71,6 @@ export class VideoChatComponent implements OnInit {
     this.localStream.getTracks().forEach(track => track.stop());
     this.peerConnection.close();
     this.peerConnection = null!; // Reset peer connection
+ this.router.navigate(['/dashboard'], { state: { doctor: history.state.doctor } });
   }
 }
