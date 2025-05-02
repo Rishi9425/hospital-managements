@@ -1,4 +1,3 @@
-// src/app/store/doctor/doctor.selectors.ts
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { DoctorState } from './doctor.reducer';
 
