@@ -1,0 +1,19 @@
+ <!-- Chat interface -->
+  <div>
+ <div class="chat-container">
+    <div class="chat-messages">
+      <div *ngFor="let message of botMessages" class="message" 
+          [ngClass]="{'user-message': message.startsWith('You:'), 'bot-message': message.startsWith('Bot:')}">
+        {{ message }}
+      </div>
+    </div>
+    
+    <div class="chat-input">
+      <input type="text" 
+            [(ngModel)]="userMessage" 
+            placeholder="Type your message..." 
+            (keyup.enter)="sendMessage()">
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
