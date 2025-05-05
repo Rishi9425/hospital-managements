@@ -1,10 +1,11 @@
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
-import { SignupComponent } from './signup/signup.component';
-import { DoctorCardsComponent } from './doctor-cards/doctor-cards.component';
-import { AppoitmentComponent } from './appoitment/appoitment.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EditPageComponent } from './edit-page/edit-page.component';
-import { VideoChatComponent } from './video-chat/video-chat.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { DoctorCardsComponent } from './components/doctor-cards/doctor-cards.component';
+import { AppoitmentComponent } from './components/appoitment/appoitment.component';
+import { DashboardComponent } from './components/login/dashboard/dashboard.component';
+import { EditPageComponent } from './components/edit-page/edit-page.component';
+import { VideoChatComponent } from './components/video-chat/video-chat.component';
 export const routes: Routes = [
 
     {

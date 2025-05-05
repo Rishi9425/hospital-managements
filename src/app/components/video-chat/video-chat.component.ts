@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { SignalingService } from '../signaling.service';
+import { SignalingService } from '../../service/signaling.service';
 
 @Component({
   selector: 'app-video-chat',
