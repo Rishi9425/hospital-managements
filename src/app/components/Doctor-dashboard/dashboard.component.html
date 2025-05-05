@@ -1,12 +1,19 @@
+<div class="dashboard-header">
+  <h1>Doctor Dashboard</h1>
+  <p>Manage your appointments and patient information</p>
+</div>
+
 <div class="dashboard-container">
   <div class="person-card">
-    <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="User Photo" class="profile-img" />
+    <img [src]="doctor.photo" alt="Doctor Profile" class="profile-img" />
     <div class="info">
       <h2>{{doctor.name}}</h2>
-      <p><strong>{{doctor.phone}}</strong></p>
-      <p><strong>{{doctor.address}}</strong> </p>
+      <p><strong>Phone:</strong> {{doctor.phone}}</p>
+      <p><strong>Address:</strong> {{doctor.address}}</p>
     </div>
-    <button class="btn" (click)="editpage()">Edit Info</button>
+    <button class="btn" (click)="editpage()">
+      Edit Profile
+    </button>
   </div>
 </div>
 
@@ -17,21 +24,57 @@
     <div class="patient-card">
       <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Patient Photo" class="patient-img" />
       <div class="patient-info">
-        <h3>Patient 1</h3>
+        <h3>Patient 1 <span class="status-badge status-active">Active</span></h3>
         <p><strong>Age:</strong> 30</p>
         <p><strong>Phone:</strong> 9855555555</p>
       </div>
-      <button class="btn" (click)="call()">Take Appointment</button>
+      <button class="appointment-btn" (click)="call()">
+        Schedule Appointment
+      </button>
     </div>
 
     <div class="patient-card">
       <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Patient Photo" class="patient-img" />
       <div class="patient-info">
-        <h3>Patient 2</h3>
+        <h3>Patient 2 <span class="status-badge status-pending">Pending</span></h3>
         <p><strong>Age:</strong> 28</p>
         <p><strong>Phone:</strong> 8765555555</p>
       </div>
-      <button class="btn" (click)="call()">Take Appointment</button>
+      <button class="appointment-btn" (click)="call()">
+        Schedule Appointment
+      </button>
     </div>
+  </div>
+</div>
+
+<!-- Chat Button (Single) -->
+<div class="chat-btn" [ngClass]="{'active': isChatBtnActive}" (click)="toggleChat()">
+  <div>
+    <div class="left-eye"></div>
+    <div class="mouth"></div>
+    <div class="right-eye"></div>
+  </div>
+</div>
+
+<!-- Chat Widget Container -->
+<div class="chat-widget-container" [ngClass]="{'open': isChatOpen}">
+  <div class="chat-header">
+    <h3>Medical Assistant</h3>
+    <button class="close-btn" (click)="toggleChat()">&times;</button>
+  </div>
+  
+  <div class="chat-messages">
+    <div *ngFor="let message of botMessages" class="message" 
+        [ngClass]="{'user-message': message.startsWith('You:'), 'bot-message': !message.startsWith('You:')}">
+      {{ message }}
+    </div>
+  </div>
+  
+  <div class="chat-input">
+    <input type="text" 
+          [(ngModel)]="userMessage" 
+          placeholder="Ask about appointments, doctors, etc..." 
+          (keyup.enter)="sendMessage()">
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>

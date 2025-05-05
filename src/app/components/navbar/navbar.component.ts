@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   constructor() {}
   
   ngOnInit() {
-    // Check if the user is logged in
+    
     this.checkLoginStatus();
   }
   

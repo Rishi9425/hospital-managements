@@ -1,4 +1,4 @@
-// src/app/api/auth.service.ts
+
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   // ✅ Add this login method
-  login(credentials: { email: string; password: string }): Observable<any> {
+  login(credentials: { name: string; password: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, credentials);
   }
 

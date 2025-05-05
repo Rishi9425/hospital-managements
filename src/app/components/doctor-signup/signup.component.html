@@ -10,6 +10,11 @@
       <span class="toggle-password" onclick="togglePassword()">👁️</span>
     </div>
 
-    <button class="Summit">Register</button>
+   <div class="password-field">
+      <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
+    <button class="Summit" (click)="signup()"
+    >Register</button>
   </form>
 </div>

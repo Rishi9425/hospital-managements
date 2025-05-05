@@ -1,9 +1,34 @@
-
-<div class="video-container">
-    <video #localVideo autoplay muted playsinline></video>
-    <video #remoteVideo autoplay playsinline></video>
+<!-- video-chat.component.html -->
+<div class="video-call-container">
+  <div class="video-container">
+    <div class="remote-video-wrapper">
+      <video #remoteVideo autoplay playsinline></video>
+      <div class="call-status" [ngClass]="{'active': callActive}">
+        <div class="status-indicator"></div>
+        <span>Call in progress</span>
+      </div>
+    </div>
+    <div class="local-video-wrapper">
+      <video #localVideo autoplay muted playsinline></video>
+    </div>
   </div>
   
-  <button class="btn1" (click)="callPeer()">Start Call</button>
-  <button class="btn2" (click)="hungUp()">Hang Up</button>
-  
+  <div class="controls">
+    <button class="btn btn-call" (click)="callPeer()">
+      <span class="btn-icon">📞</span>
+      <span>Start Call</span>
+    </button>
+    <button class="btn btn-mute" *ngIf="callActive" (click)="toggleAudio()">
+      <span class="btn-icon">{{ isAudioMuted ? '🔇' : '🔊' }}</span>
+      <span>{{ isAudioMuted ? 'Unmute' : 'Mute' }}</span>
+    </button>
+    <button class="btn btn-camera" *ngIf="callActive" (click)="toggleVideo()">
+      <span class="btn-icon">{{ isVideoOff ? '📵' : '📹' }}</span>
+      <span>{{ isVideoOff ? 'Show Video' : 'Hide Video' }}</span>
+    </button>
+    <button class="btn btn-hangup" (click)="hungUp()">
+      <span class="btn-icon">❌</span>
+      <span>Hang Up</span>
+    </button>
+  </div>
+</div>
