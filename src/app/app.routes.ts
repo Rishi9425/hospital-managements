@@ -7,6 +7,8 @@ import { EditPageComponent } from './components/edit-page/edit-page.component';
 import { VideoChatComponent } from './components/video-chat/video-chat.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard, patientGuard, doctorGuard } from './guards/auth.guard';
+import { PatientDashboardComponent } from './components/patient-dashboard/patient-dashboard.component';
+import { PatientEditPageComponent } from './components/patient-edit-page/patient-edit-page.component';
 
 export const routes: Routes = [
   // Public routes
@@ -19,47 +21,51 @@ export const routes: Routes = [
   // Protected patient routes
   {
     path: 'patient-dashboard',
-    component: DashboardComponent, // Replace with PatientDashboardComponent if available
-    canActivate: [patientGuard]
+    component: PatientDashboardComponent, 
+    //canActivate: [patientGuard]
   },
   {
     path: 'medical-records',
-    component: AppoitmentComponent, // Replace with MedicalRecordsComponent if available
-    canActivate: [patientGuard]
+    component: AppoitmentComponent, 
+    //canActivate: [patientGuard]
   },
 
   // Protected doctor routes
   {
     path: 'doctor-dashboard',
     component: DashboardComponent,
-    canActivate: [doctorGuard]
+    //canActivate: [doctorGuard]
   },
   {
     path: 'appointments',
     component: AppoitmentComponent,
-    canActivate: [doctorGuard]
+    //canActivate: [authGuard]
   },
   {
     path: 'edit-page',
     component: EditPageComponent,
-    canActivate: [authGuard]
+    //canActivate: [authGuard]
   },
 
   // Shared protected routes
   {
     path: 'video-chat',
     component: VideoChatComponent,
-    canActivate: [authGuard]
+    //canActivate: [authGuard]
   },
 
   // Redirect to appropriate dashboard if logged in
   {
     path: 'dashboard',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () =>
       import('./features/dashboard.module').then(
         (m) => m.DashboardModule
       )
+  },
+  {
+path: 'edit-page-patient',
+component: PatientEditPageComponent,
   },
 
   // Fallback route

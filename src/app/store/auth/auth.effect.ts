@@ -13,7 +13,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(login),
       mergeMap(action =>
-        this.authService.login({ email: action.email, password: action.password }).pipe(
+        this.authService.login(action.fullname, action.password, action.userType).pipe( // Pass all three arguments
           map(user => loginSuccess({ user })),
           catchError(error => of(loginFailure({ error })))
         )

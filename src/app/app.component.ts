@@ -5,17 +5,23 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+//import { DoctorCardsComponent } from "./components/doctor-cards/doctor-cards.component";
+import { DashboardComponent } from "./components/Doctor-dashboard/dashboard.component";
+import { PatientDashboardComponent } from "./components/patient-dashboard/patient-dashboard.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    NavbarComponent, 
-    CommonModule, 
-    FormsModule, 
-    HttpClientModule
-  ],
+    RouterOutlet,
+    NavbarComponent,
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    //DoctorCardsComponent,
+    DashboardComponent,
+    PatientDashboardComponent
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [

@@ -12,7 +12,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 export class DoctorCardsComponent {
   constructor(private router: Router) {}
 
-  goToBookings(){
-  this.router.navigate(['/appoitment']);
+  goToBookings() : void{
+  this.router.navigate(['/appointments']);
 }
 }

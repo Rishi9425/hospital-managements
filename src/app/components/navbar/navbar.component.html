@@ -29,9 +29,9 @@
         </li>
         
         <!-- Show these options when user is logged in -->
-        <li *ngIf="isLoggedIn">
-        
-          <a routerLink="dashboard">Dashboard</a>
+      <li *ngIf="isLoggedIn">
+       
+          <a routerLink="dashboard" *ngIf="isLoggedIn">Dashboard</a>
         </li>
         <li *ngIf="isLoggedIn && userType === 'doctor'">
           <a routerLink="appointments">Appointments</a>

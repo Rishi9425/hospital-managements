@@ -6,12 +6,13 @@ import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, NgIf, NgFor],
+  imports: [RouterLink, NgIf],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn = false;
+  isLoggedIn = true;
+  //yaha pr false aayega jab user login nahi hoga
   userType: 'patient' | 'doctor' | null = null;
   notificationCount = 0;
   isMenuOpen = false;

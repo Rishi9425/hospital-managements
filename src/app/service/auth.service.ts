@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 export interface User {
   id: string;
   name: string;
-  email: string;
   type: 'patient' | 'doctor';
   token?: string;
 }
@@ -45,8 +44,8 @@ export class AuthService {
     return null;
   }
 
-  login(email: string, password: string, userType: 'patient' | 'doctor'): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/${userType}/login`, { email, password })
+  login(fullname: string, password: string, userType: 'patient' | 'doctor'): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/${userType}/login`, { fullname, password })
       .pipe(
         tap(user => {
           // Add user type to the response
