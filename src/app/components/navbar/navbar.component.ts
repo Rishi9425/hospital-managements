@@ -1,12 +1,14 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, NgIf],
+  standalone: true,
+  imports: [RouterLink, NgIf, NgFor],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
@@ -16,11 +18,26 @@ export class NavbarComponent implements OnInit {
   activeDropdown: string | null = null;
   isMobile = window.innerWidth <= 768;
   
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
   
   ngOnInit() {
-    
     this.checkLoginStatus();
+    
+    // Subscribe to authentication changes
+    this.authService.currentUser.subscribe(user => {
+      this.isLoggedIn = !!user;
+      this.userType = user?.type || null;
+      
+      // Example: Set notification count based on user type
+      if (this.isLoggedIn) {
+        this.notificationCount = this.userType === 'doctor' ? 5 : 2;
+      } else {
+        this.notificationCount = 0;
+      }
+    });
   }
   
   @HostListener('window:resize', ['$event'])
@@ -51,12 +68,12 @@ export class NavbarComponent implements OnInit {
   }
   
   checkLoginStatus() {
-    // Example implementation - replace with your actual auth logic
-    const userJson = localStorage.getItem('currentUser');
-    if (userJson) {
-      const user = JSON.parse(userJson);
-      this.isLoggedIn = true;
-      this.userType = user.type;
+    // Use auth service to check login status
+    this.isLoggedIn = this.authService.isLoggedIn();
+    this.userType = this.authService.getUserType();
+    
+    // Example: Set notification count
+    if (this.isLoggedIn) {
       this.notificationCount = this.userType === 'doctor' ? 5 : 2;
     }
   }
@@ -106,14 +123,20 @@ export class NavbarComponent implements OnInit {
   }
   
   logout() {
-    localStorage.removeItem('currentUser');
-    this.isLoggedIn = false;
-    this.userType = null;
-    this.notificationCount = 0;
+    this.authService.logout();
     
     // Close mobile menu if open
     if (this.isMenuOpen) {
       this.toggleMenu();
+    }
+  }
+  
+  navigateToDashboard() {
+    if (this.isLoggedIn) {
+      const dashboardRoute = this.userType === 'patient' ? '/patient-dashboard' : '/doctor-dashboard';
+      this.router.navigate([dashboardRoute]);
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 }
