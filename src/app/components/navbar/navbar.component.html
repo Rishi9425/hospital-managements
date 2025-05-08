@@ -1,56 +1,46 @@
 <nav class="navbar">
-    <h2 class="h2"><a routerLink="">Hospital</a></h2>
-    
-    <div class="search">
-      <input type="text" placeholder="Search Hospital/Doctor" />
-      <button>Search</button>
-    </div>
-    
-    <div class="nav-links" [class.open]="isMenuOpen">
-      <ul>
-        <!-- Show these options when user is not logged in -->
-        <li *ngIf="!isLoggedIn" class="dropdown">
-          <a class="dropdown-toggle" data-dropdown="signup" (click)="toggleDropdown($event, 'signup')">
-            Sign Up <span class="dropdown-icon">▼</span>
-          </a>
-          <div class="dropdown-menu">
-            <a routerLink="signup/patient" routerLink="signup">Sign Up as Patient</a>
-            <a routerLink="signup/doctor" routerLink="signup">Sign Up as Doctor</a>
-          </div>
-        </li>
-        <li *ngIf="!isLoggedIn" class="dropdown">
-          <a class="dropdown-toggle" data-dropdown="login" (click)="toggleDropdown($event, 'login')">
-            Login <span class="dropdown-icon">▼</span>
-          </a>
-          <div class="dropdown-menu">
-            <a routerLink="login/patient" routerLink="login">Login as Patient</a>
-            <a routerLink="login/doctor" routerLink="login">Login as Doctor</a>
-          </div>
-        </li>
-        
-        <!-- Show these options when user is logged in -->
+  <h2 class="h2"><a routerLink="">Hospital</a></h2>
+  
+  <div class="search">
+    <input type="text" placeholder="Search Hospital/Doctor" />
+    <button>Search</button>
+  </div>
+  
+  <div class="nav-links" [class.open]="isMenuOpen">
+    <ul>
+      <!-- Show signup/login options when user is NOT logged in -->
+      <li *ngIf="!isLoggedIn" class="dropdown">
+        <a class="dropdown-toggle" data-dropdown="signup" (click)="signup()">
+          Sign Up 
+        </a>
+        <!-- <div class="dropdown-menu">
+          <a (click)="patientSignup()">Sign Up as Patient</a>
+          <a (click)="doctorSignup()">Sign Up as Doctor</a>
+        </div> -->
+      </li>
+      
+      <li *ngIf="!isLoggedIn">
+        <a (click)="login()">Login</a>
+      </li>
+      
+      <!-- Show dashboard link when user IS logged in -->
+      <li *ngIf="isLoggedIn && userType === 'doctor'">
+        <a (click)="navigateToDashboard()">Doctor Dashboard</a>
+      </li>
+      
+      <li *ngIf="isLoggedIn && userType === 'patient'">
+        <a (click)="navigateToDashboard()">Patient Dashboard</a>
+      </li>
+      
+      <!-- Show logout button when user IS logged in -->
       <li *ngIf="isLoggedIn">
-       
-          <a routerLink="dashboard" *ngIf="isLoggedIn">Dashboard</a>
-        </li>
-        <li *ngIf="isLoggedIn && userType === 'doctor'">
-          <a routerLink="appointments">Appointments</a>
-        </li>
-        <li *ngIf="isLoggedIn && userType === 'patient'">
-          <a routerLink="medical-records">Medical Records</a>
-        </li>
-        <li *ngIf="isLoggedIn" class="notification">
-          <a>🔔</a>
-          <span *ngIf="notificationCount > 0" class="notification-badge">{{notificationCount}}</span>
-        </li>
-        <li *ngIf="isLoggedIn">
-          <a (click)="logout()" class="logout-btn">Logout</a>
-        </li>
-      </ul>
-    </div>
-    
-    <!-- Hamburger icon for mobile view -->
-    <div class="hamburger" (click)="toggleMenu()">
-      ☰
-    </div>
-  </nav>
+        <a (click)="logout()" class="logout-btn">Logout</a>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Hamburger icon for mobile view -->
+  <div class="hamburger" (click)="toggleMenu()">
+    ☰
+  </div>
+</nav>

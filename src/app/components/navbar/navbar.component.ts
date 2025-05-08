@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { NgIf, NgFor } from '@angular/common';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +11,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn = true;
-  //yaha pr false aayega jab user login nahi hoga
+  isLoggedIn = false; // Start with false by default
   userType: 'patient' | 'doctor' | null = null;
   notificationCount = 0;
   isMenuOpen = false;
@@ -25,14 +24,15 @@ export class NavbarComponent implements OnInit {
   ) {}
   
   ngOnInit() {
+    // Check login status on init
     this.checkLoginStatus();
     
     // Subscribe to authentication changes
     this.authService.currentUser.subscribe(user => {
       this.isLoggedIn = !!user;
-      this.userType = user?.type || null;
+      this.userType = user?.userType || null;
       
-      // Example: Set notification count based on user type
+      // Set notification count based on user type
       if (this.isLoggedIn) {
         this.notificationCount = this.userType === 'doctor' ? 5 : 2;
       } else {
@@ -73,7 +73,7 @@ export class NavbarComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.userType = this.authService.getUserType();
     
-    // Example: Set notification count
+    // Set notification count
     if (this.isLoggedIn) {
       this.notificationCount = this.userType === 'doctor' ? 5 : 2;
     }
@@ -131,6 +131,16 @@ export class NavbarComponent implements OnInit {
       this.toggleMenu();
     }
   }
+
+  login(){
+    this.router.navigate(['/login']);
+  }
+
+  signup(){
+    this.router.navigate(['/signup']);
+  }
+
+ 
   
   navigateToDashboard() {
     if (this.isLoggedIn) {

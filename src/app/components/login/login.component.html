@@ -1,16 +1,56 @@
 <div class="container">
-    <form class="signup">
-      <h2>Login</h2>
-  
-      <input type="text" placeholder="Full Name" required>
-      
-      <div class="password-field">
-        <input type="password" id="password" placeholder="Password" required>
-        <span class="toggle-password" onclick="togglePassword()">👁️</span>
-      </div>
-  
-      <button class="Summit" (click)="login()"
-      >LogIn</button>
-    </form>
+  <div class="login">
+    <h2>Login</h2>
+
+    <input
+      type="text"
+      placeholder="UserName"
+      [(ngModel)]="userName"
+      name="username"
+      required
+    />
+
+    <div class="password-field">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+      <span
+        class="toggle-password"
+        (click)=" togglePassword()"
+        [title]="showPassword ? 'Hide Password' : 'Show Password'"
+      >
+        👁️
+      </span>
+    </div>
+
+    <div class="userType-wrapper">
+      <label class="userType-label">User Type:</label>
+      <select
+        class="userType-select"
+        [(ngModel)]="userType"
+        name="userType"
+        required
+      >
+        <option value="">Select</option>
+        <option value="doctor">doctor</option>
+        <option value="patient">patient</option>
+      </select>
+    </div>
+    
+    <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+      {{ errorMessage }}
+    </div>
+    
+    <button
+      class="Summit"
+      (click)="login()"
+      [disabled]="!userName || !password || !userType"
+    >
+      Log In
+    </button>
   </div>
-  
+</div>

@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { SignalingService } from '../../service/signaling.service';
+import { SignalingService } from '../../service/video-call/signaling.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

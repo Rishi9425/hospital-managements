@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
   }
 
   editpage() {
-    this.router.navigate(['/edit-page'], { state: { doctor: this.doctor } });
+    this.router.navigate(['/edit-doctor-profile'], { state: { doctor: this.doctor } });
   }
   
   call() {
@@ -60,27 +60,27 @@ export class DashboardComponent implements OnInit {
     this.isChatBtnActive = this.isChatOpen;
   }
 
-  sendMessage() {
-    if (!this.userMessage.trim()) return;
+  // sendMessage() {
+  //   if (!this.userMessage.trim()) return;
     
-    // Add user message to chat
-    this.botMessages.push(`You: ${this.userMessage}`);
-    const messageToSend = this.userMessage;
-    this.userMessage = '';
+  //   // Add user message to chat
+  //   this.botMessages.push(`You: ${this.userMessage}`);
+  //   const messageToSend = this.userMessage;
+  //   this.userMessage = '';
     
-    // Simulate bot response
-    setTimeout(() => {
-      let botResponse = 'I received your message. How can I help you with hospital management?';
+  //   // Simulate bot response
+  //   setTimeout(() => {
+  //     let botResponse = 'I received your message. How can I help you with hospital management?';
       
-      if (messageToSend.toLowerCase().includes('appointment')) {
-        botResponse = 'Would you like to schedule an appointment? Please provide your preferred date and time.';
-      } else if (messageToSend.toLowerCase().includes('doctor')) {
-        botResponse = 'We have several specialists available. What type of doctor would you like to see?';
-      } else if (messageToSend.toLowerCase().includes('patient')) {
-        botResponse = 'You currently have 2 patients in your list. Would you like to see their details?';
-      }
+  //     if (messageToSend.toLowerCase().includes('appointment')) {
+  //       botResponse = 'Would you like to schedule an appointment? Please provide your preferred date and time.';
+  //     } else if (messageToSend.toLowerCase().includes('doctor')) {
+  //       botResponse = 'We have several specialists available. What type of doctor would you like to see?';
+  //     } else if (messageToSend.toLowerCase().includes('patient')) {
+  //       botResponse = 'You currently have 2 patients in your list. Would you like to see their details?';
+  //     }
       
-      this.botMessages.push(`Bot: ${botResponse}`);
-    }, 500);
-  }
+  //     this.botMessages.push(`Bot: ${botResponse}`);
+  //   }, 500);
+  // }
 }

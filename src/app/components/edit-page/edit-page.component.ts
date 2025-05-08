@@ -31,7 +31,7 @@ export class EditPageComponent {
     history.state.doctor.phone = this.doctor.phone;
     history.state.doctor.address = this.doctor.address;
     history.state.doctor.photo = this.doctor.photo;
-    this.router.navigate(['/dashboard'], { state: { doctor: this.doctor } });
+    this.router.navigate(['/doctor-dashboard'], { state: { doctor: this.doctor } });
   }
 }
 

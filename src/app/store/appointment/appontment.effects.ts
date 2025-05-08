@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AppointmentService } from '../../service/appointment.service';
+import { AppointmentService } from '../../service/appointment/appointment.service';
 import {
   bookAppointment,
   bookAppointmentSuccess,

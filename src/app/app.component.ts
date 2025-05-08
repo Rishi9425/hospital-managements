@@ -6,8 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 //import { DoctorCardsComponent } from "./components/doctor-cards/doctor-cards.component";
-import { DashboardComponent } from "./components/Doctor-dashboard/dashboard.component";
-import { PatientDashboardComponent } from "./components/patient-dashboard/patient-dashboard.component";
 
 @Component({
   selector: 'app-root',
@@ -19,8 +17,7 @@ import { PatientDashboardComponent } from "./components/patient-dashboard/patien
     FormsModule,
     HttpClientModule,
     //DoctorCardsComponent,
-    DashboardComponent,
-    PatientDashboardComponent
+    
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

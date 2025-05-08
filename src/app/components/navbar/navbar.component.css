@@ -217,10 +217,14 @@
   .navbar {
     padding: 1rem;
     flex-wrap: wrap;
+    justify-content: center; /* Center alignment for mobile */
   }
   
   .navbar h2 {
-    flex: 1;
+    flex: initial; /* Reset flex to allow proper centering */
+    text-align: center; /* Center the brand/logo */
+    margin-bottom: 0.5rem; /* Add some space */
+    width: 100%; /* Make it full width */
   }
   
   .search {
@@ -229,15 +233,20 @@
     order: 3;
     max-width: none;
     display: flex;
+    justify-content: center; /* Center the search bar */
   }
   
   .search input {
     flex: 1;
+    max-width: 80%; /* Prevent it from being too wide */
   }
   
   .hamburger {
     display: block;
     order: 2;
+    position: absolute; /* Position absolutely */
+    right: 1rem; /* Align to right */
+    top: 1rem; /* Align to top */
   }
   
   .nav-links {
@@ -247,6 +256,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
+    text-align: center; /* Center align the links */
   }
   
   .nav-links.open {
@@ -256,7 +266,7 @@
   
   .nav-links ul {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Center align the list items */
     gap: 0.8rem;
     width: 100%;
     padding: 1rem 0;
@@ -264,6 +274,7 @@
   
   .nav-links ul li {
     width: 100%;
+    text-align: center; /* Center align the text */
   }
   
   /* Mobile dropdown styling */
@@ -272,12 +283,17 @@
     padding-right: 0; /* Reset padding for mobile */
   }
   
+  .dropdown-toggle {
+    justify-content: center; /* Center the dropdown toggle text */
+  }
+  
   .dropdown-menu {
     position: static;
     box-shadow: none;
-    border-left: 2px solid #f1c40f;
-    margin-left: 1rem;
-    width: calc(100% - 1rem);
+    border-left: none; /* Remove the left border */
+    border-top: 2px solid #f1c40f; /* Add a top border instead */
+    margin-left: 0;
+    width: 100%;
     visibility: hidden;
     opacity: 0;
     max-height: 0;
@@ -298,13 +314,32 @@
   /* Add padding to all nav links in mobile view */
   .nav-links ul li a {
     padding: 0.8rem 0;
+    text-align: center; /* Center align the links */
   }
   
   /* Style the logout button better in mobile */
   .logout-btn {
     padding: 0.8rem 0;
     border-top: 1px solid rgba(241, 196, 15, 0.2);
-    margin-top: 0.5rem;
+    margin: 0.5rem auto 0; /* Center with margin auto */
+    text-align: center;
+    width: 50%; /* Limit width for better appearance */
+    max-width: 200px;
+  }
+  
+  /* Dashboard specific styling for mobile */
+  .dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .dashboard-item {
+    width: 100%;
+    max-width: 500px; /* Limit width on mobile */
+    margin: 0 auto 1rem; /* Center with margin auto */
   }
 }
 
@@ -312,5 +347,10 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .search {
     width: 25%;
+  }
+  
+  /* Medium screen dashboard adjustments if needed */
+  .dashboard-content {
+    padding: 1rem;
   }
 }

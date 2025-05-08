@@ -1,4 +1,4 @@
-import { bookAppointment } from './../store/appointment/appointment.actions';
+import { bookAppointment } from '../../store/appointment/appointment.actions';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

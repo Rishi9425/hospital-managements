@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service'; // Adjust the path to your AuthService
+import { AuthService } from '../service/auth/auth.service'; // Adjust the path to your AuthService
 
 @Component({
   selector: 'app-dashboard-redirect',

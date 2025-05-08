@@ -1,11 +1,56 @@
 <div class="form-body">
-<form class="booking-form">
-  <h1>Book Your Slot</h1>
-  <input type="text" placeholder="Enter your name" name="name" required>
-  <input type="date" name="date" required>
-  <input type="time" name="time" required>
-  <input type="text" placeholder="Phone No" name="phone" required>
-  <button (click)="appointment()">Book Appointment</button>
-</form>
-</div>
+  <form class="booking-form" #appointmentForm="ngForm" (ngSubmit)="appointment()">
+    <h1>Book Your Slot</h1>
 
+   
+    <input 
+      type="text" 
+      placeholder="Enter your name" 
+      name="name" 
+      [(ngModel)]="appointmentData.name" 
+      #name="ngModel" 
+      required>
+    <div *ngIf="name.invalid && name.touched" class="error">
+      <small *ngIf="name.errors?.['required']">Name is required.</small>
+    </div>
+
+    
+    <input 
+      type="date" 
+      name="date" 
+      [(ngModel)]="appointmentData.date" 
+      #date="ngModel" 
+      required>
+    <div *ngIf="date.invalid && date.touched" class="error">
+      <small *ngIf="date.errors?.['required']">Date is required.</small>
+    </div>
+
+   
+    <input 
+      type="time" 
+      name="time" 
+      [(ngModel)]="appointmentData.time" 
+      #time="ngModel" 
+      required>
+    <div *ngIf="time.invalid && time.touched" class="error">
+      <small *ngIf="time.errors?.['required']">Time is required.</small>
+    </div>
+
+    
+    <input 
+      type="text" 
+      placeholder="Phone No" 
+      name="phone" 
+      [(ngModel)]="appointmentData.phone" 
+      #phone="ngModel" 
+      required 
+      pattern="^[0-9]{10}$">
+    <div *ngIf="phone.invalid && phone.touched" class="error">
+      <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
+      <small *ngIf="phone.errors?.['pattern']">Phone number must be 10 digits.</small>
+    </div>
+
+   
+    <button type="submit" [disabled]="appointmentForm.invalid">Book Appointment</button>
+  </form>
+</div>
