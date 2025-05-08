@@ -40,7 +40,7 @@ export const routes: Routes = [
   {
     path: 'appointments',
     component: AppoitmentComponent,
-    canActivate: [authGuard]
+    canActivate: [patientGuard]
   },
   {
     path: 'edit-doctor-profile',

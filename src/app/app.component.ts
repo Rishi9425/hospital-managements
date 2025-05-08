@@ -6,7 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 //import { DoctorCardsComponent } from "./components/doctor-cards/doctor-cards.component";
-
+// import { doctorReducer } from './store/doctor/doctor.reducer';
+// import { DoctorEffects } from './store/doctor/doctor.effects';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,7 +20,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     FormsModule,
     HttpClientModule,
     //DoctorCardsComponent,
-    
+    // StoreModule and EffectsModule should be configured in the application bootstrap, not here
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

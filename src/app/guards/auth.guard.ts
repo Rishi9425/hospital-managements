@@ -27,7 +27,8 @@ export const patientGuard: CanActivateFn = (route, state) => {
 
   if (authService.isLoggedIn()) {
     // Redirect to doctor dashboard if logged in as doctor
-    router.navigate(['/doctor-dashboard']);
+    alert('You are logged in as a doctor.');
+    //router.navigate(['/doctor-dashboard']);
   } else {
     router.navigate(['/login']);
   }

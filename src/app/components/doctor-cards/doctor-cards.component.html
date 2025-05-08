@@ -1,54 +1,24 @@
 <div class="doctor-list">
-  <div class="doctor-card">
-    <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Doctor Image">
-    <div class="doctor-info">
-      <h3>Dr ABC</h3>
-      <p>Cardiologist</p>
-      <button (click)="goToBookings()">Book Appointment</button>
-    </div>
+  <div *ngIf="loading" class="loading-state">
+    <p>Loading doctors...</p>
   </div>
 
-  <div class="doctor-card">
-    <img class="image" src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Doctor Image">
+  <div *ngIf="error" class="error-state">
+    <p>Failed to load doctors. Please try again later.</p>
+  </div>
+
+  <div *ngIf="!loading && !error && (doctors$ | async)?.length === 0" class="empty-state">
+    <p>No doctors found.</p>
+  </div>
+
+  <div *ngFor="let doctor of (doctors$ | async)" class="doctor-card">
+    <img [src]="doctor.photo || 'assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp'" 
+         [alt]="doctor.name"
+         class="image" />
     <div class="doctor-info">
-      <h3>Dr ABC</h3>
-      <p>Cardiologist</p>
-      <button (click)="goToBookings()">Book Appointment</button>
+      <h3>{{ doctor.name }}</h3>
+      <p>{{ doctor.specialization || 'Specialist' }}</p>
+      <button (click)="goToBookings(doctor.id)">Book Appointment</button>
     </div>
   </div>
- 
-    <div class="doctor-card">
-      <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Doctor Image">
-      <div class="doctor-info">
-        <h3>Dr ABC</h3>
-        <p>Cardiologist</p>
-        <button (click)="goToBookings()">Book Appointment</button>
-      </div>
-    </div>
-
-    <div class="doctor-card">
-      <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Doctor Image">
-      <div class="doctor-info">
-        <h3>Dr ABC</h3>
-        <p>Cardiologist</p>
-        <button (click)="goToBookings()">Book Appointment</button>
-      </div>
-    </div>
-    <div class="doctor-card">
-      <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Doctor Image">
-      <div class="doctor-info">
-        <h3>Dr ABC</h3>
-        <p>Cardiologist</p>
-        <button (click)="goToBookings()">Book Appointment</button>
-      </div>
-    </div>
-    <div class="doctor-card">
-      <img src="assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp" alt="Doctor Image">
-      <div class="doctor-info">
-        <h3>Dr ABC</h3>
-        <p>Cardiologist</p>
-        <button (click)="goToBookings()">Book Appointment</button>
-      </div>
-    </div>
 </div>
-
