@@ -12,6 +12,14 @@ export interface Doctor {
   experience?: number;
 }
 
+export interface Appointment {
+  id: string;
+  patientName: string;
+  date: string;
+  time: string;
+  status: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class DoctorService {
   private readonly baseUrl = 'http://localhost:3000/api/doctor';
@@ -74,6 +82,37 @@ export class DoctorService {
     }
   ];
 
+  private mockAppointments: Appointment[] = [
+    {
+      id: 'a1',
+      patientName: 'John Doe',
+      date: '2025-05-10',
+      time: '10:00 AM',
+      status: 'Pending'
+    },
+    {
+      id: 'a2',
+      patientName: 'Jane Smith',
+      date: '2025-05-11',
+      time: '2:30 PM',
+      status: 'Confirmed'
+    },
+    {
+      id: 'a3',
+      patientName: 'Robert Brown',
+      date: '2025-05-12',
+      time: '9:15 AM',
+      status: 'Cancelled'
+    },
+    {
+      id: 'a4',
+      patientName: 'Emily Davis',
+      date: '2025-05-13',
+      time: '1:00 PM',
+      status: 'Confirmed'
+    }
+  ];
+
   constructor(private readonly http: HttpClient) {}
 
   /**
@@ -97,8 +136,9 @@ export class DoctorService {
    * Retrieves all appointments for the logged-in doctor
    * @returns Observable array of appointment objects
    */
-  getDoctorAppointments(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/appointments`);
+  getDoctorAppointments(): Observable<Appointment[]> {
+    //return this.http.get<any[]>(`${this.baseUrl}/appointments`);
+    return of(this.mockAppointments);
   }
 
   /**

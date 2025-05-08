@@ -57,18 +57,34 @@
     font-size: 16px;
     color: #555;
   }
-  
-  .login .Summit {
+  .submit-btn {
     width: 100%;
-    padding: 12px 0;
-    background-color: #3498db;
+    padding: 15px 0;
+    background: linear-gradient(90deg, #4299e1, #3182ce);
     color: white;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 700;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 6px 10px rgba(66, 153, 225, 0.25);
+  }
+  
+  .submit-btn:hover {
+    background: linear-gradient(90deg, #3182ce, #2b6cb0);
+    transform: translateY(-2px);
+  }
+  
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  .submit-btn:disabled {
+    background: #b2c5e1;
+    cursor: not-allowed;
+    transform: none;
   }
   
   .userType-wrapper {

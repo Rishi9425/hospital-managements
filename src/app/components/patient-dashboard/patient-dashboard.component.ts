@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, Location } from '@angular/common'; 
 import { Router } from '@angular/router';
+import { PatientService, Doctor} from '../../service/patient-service/patient.service'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -12,13 +13,7 @@ import { Router } from '@angular/router';
 })
 export class PatientDashboardComponent implements OnInit {
   patientId: string = '0';
-
-  appointments: any[] = [
-    { id: '1', date: '2025-05-10', time: '10:00 AM', doctor: 'Dr. Smith', status: 'Scheduled' },
-    { id: '2', date: '2025-05-12', time: '02:00 PM', doctor: 'Dr. Jane', status: 'Confirmed' },
-    { id: '3', date: '2025-05-15', time: '01:00 PM', doctor: 'Dr. Brown', status: 'Scheduled' }
-  ];
-
+  appointments: any[] = [];
   isLoading = false;
   error: string | null = null;
 
@@ -34,13 +29,44 @@ export class PatientDashboardComponent implements OnInit {
     photo: 'assets/images/male-doctor-smiling-happy-face-600nw-2481032615.webp'
   };
 
-  constructor(private router: Router, private location: Location) {}
+  constructor(
+    private router: Router,
+    private location: Location,
+    private patientService: PatientService
+  ) {}
 
   ngOnInit(): void {
     const state = this.location.getState() as any;
     if (state?.patient) {
       this.patientProfile = { ...state.patient };
     }
+
+    this.loadAppointments();
+  }
+
+  loadAppointments() {
+    this.isLoading = true;
+    this.patientService.getUpcomingAppointments().subscribe({
+      next: (doctors: Doctor[]) => {
+        this.appointments = doctors.map((doc, index) => ({
+          id: `a${index + 1}`,
+          date: `2025-05-${10 + index}`,
+          time: `${10 + index}:00 AM`,
+          doctor: doc.name,
+          status: index % 2 === 0 ? 'Scheduled' : 'Confirmed',
+          specialization: doc.specialization,
+          experience: doc.experience,
+          photo: doc.photo,
+          phone: doc.phone,
+          address: doc.address
+        }));
+        this.isLoading = false;
+      },
+      error: err => {
+        this.error = 'Failed to load appointments.';
+        this.isLoading = false;
+      }
+    });
   }
 
   cancelAppointment(appointmentId: string) {
