@@ -55,21 +55,10 @@ export const routes: Routes = [
   // Shared protected routes
   {
     path: 'video-chat',
-    component: VideoChatComponent,
+    loadComponent: () => import('./components/video-chat/video-chat.component').then((m)=> m.VideoChatComponent),
     canActivate: [authGuard]
   },
 
-  // Redirect to appropriate dashboard if logged in
-  // {
-  //   // path: 'dashboard',
-  //   // //canActivate: [authGuard],
-  //   // loadChildren: () =>
-  //   //   import('./features/dashboard.module').then(
-  //   //     (m) => m.DashboardModule
-  //   //   )
-  //   path: 'patient-dashboard',
-  //   component: PatientDashboardComponent,
-  // },
 
   {
 path: 'edit-page-patient',

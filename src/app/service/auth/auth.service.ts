@@ -19,8 +19,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
   private readonly baseUrl = 'http://localhost:3000/api';
-  
-  // Hardcoded data instead of loading from file
+
   private userData = {
     "patients": [
         {
@@ -85,46 +84,51 @@ export class AuthService {
     return null;
   }
 
-  login(userName: string, password: string, userType: 'patient' | 'doctor'): Observable<User> {
-    // Use the hardcoded data instead of HTTP request
-    return of(this.userData).pipe(
-      map(data => {
-        // Check if we're looking for a patient or doctor
-        const userList = userType === 'patient' ? data.patients : data.doctors;
-        
-        // Find the user with matching credentials
-        const user = userList.find((u: any) => 
-          u.userName.toLowerCase() === userName.toLowerCase() && 
-          u.password === password &&
-          u.userType.toLowerCase() === userType.toLowerCase()
-        );
-        
-        if (user) {
-          // Create a standardized user object
-          const authenticatedUser: User = {
-            fullName: user.fullName,
-            age: user.age,
-            phoneNumber: user.phoneNumber,
-            userName: user.userName,
-            userType: userType
-          };
-          
-          // Store user in local storage
-          localStorage.setItem('currentUser', JSON.stringify(authenticatedUser));
-          this.currentUserSubject.next(authenticatedUser);
-          
-          return authenticatedUser;
-        } else {
-          throw new Error('Invalid credentials');
-        }
-      }),
-      catchError(error => {
-        console.error('Login failed', error);
-        return throwError(() => new Error('Invalid username, password, or user type'));
-      })
-    );
-  }
   
+  login(userName: string, password: string, userType: 'patient' | 'doctor'): Observable<User> {
+  return of(this.userData).pipe(
+    map(data => {
+  
+      const userList = userType === 'patient' ? data.patients : data.doctors;
+
+      // Find the user by username
+      const user = userList.find((u: any) => u.userName.toLowerCase() === userName.toLowerCase());
+
+      if (!user) {
+        throw new Error('Invalid username');
+      }
+
+      // Check if the password matches
+      if (user.password !== password) {
+        throw new Error('Incorrect password');
+      }
+
+      // Check if the user type matches
+      if (user.userType.toLowerCase() !== userType.toLowerCase()) {
+        throw new Error('Incorrect user type');
+      }
+
+      
+      const authenticatedUser: User = {
+        fullName: user.fullName,
+        age: user.age,
+        phoneNumber: user.phoneNumber,
+        userName: user.userName,
+        userType: userType
+      };
+
+      // Store user in local storage
+      localStorage.setItem('currentUser', JSON.stringify(authenticatedUser));
+      this.currentUserSubject.next(authenticatedUser);
+
+      return authenticatedUser;
+    }),
+    catchError(error => {
+      console.error('Login failed', error.message);
+      return throwError(() => new Error(error.message));
+    })
+  );
+}
   signup(userData: any, userType: 'patient' | 'doctor'): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/${userType}/signup`, userData)
       .pipe(
