@@ -53,6 +53,8 @@ export const routes: Routes = [
   },
 
   // Shared protected routes
+
+  //lazy loading video chat components
   {
     path: 'video-chat',
     loadComponent: () => import('./components/video-chat/video-chat.component').then((m)=> m.VideoChatComponent),

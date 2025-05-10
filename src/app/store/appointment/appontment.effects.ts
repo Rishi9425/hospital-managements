@@ -30,7 +30,6 @@ export class AppointmentEffects {
       )
     )
   );
-
   bookAppointment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(bookAppointment),
